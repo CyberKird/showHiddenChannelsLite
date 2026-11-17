@@ -129,6 +129,11 @@ export default definePlugin({
                 {
                     match: /(getRenderLevel\(\i\){.+?return)!\i\.\i\.can\(\i\.\i\.VIEW_CHANNEL,this\.record\)\|\|/,
                     replace: (_, rest) => `${rest} `
+                },
+                // Hidden channels can never be opted into, so servers with onboarding would never show them
+                {
+                    match: /(?<=!(\i)\.optInEnabled\|\|)(?=\1\.optedInChannels\.has\(this\.id\))/,
+                    replace: "$self.isHiddenChannel(this.record)||"
                 }
             ]
         },
@@ -532,7 +537,7 @@ export default definePlugin({
 
     getChannelName(channel: Channel, name: string) {
         try {
-            if (name !== REDACTED_NAME) return name;
+            if (channel?.name !== REDACTED_NAME && name !== REDACTED_NAME) return name;
             return settings.store.hiddenChannelName || "hidden";
         } catch {
             return name;

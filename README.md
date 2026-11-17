@@ -8,12 +8,12 @@ Discord now strips hidden channels on the server. Every channel you can't view a
 
 ## What still works
 
-- Hidden channels show up in the channel list with a lock, at their real position and in their real category
+- Hidden channels show up in the channel list with a lock, at their real position and in their real category, including hidden categories and servers that use onboarding (Browse Channels)
 - Their type is real (text, voice, forum, stage, announcement)
 - You can see who is sitting in a hidden voice channel
 - Locked channels (visible but no Connect) still show their real allowed users and roles
 
-The `___hidden___` name is replaced with `hidden` in the list. You can change that text in the plugin settings.
+Hidden channels are labelled `hidden` in the list instead of `___hidden___`. You can change that text in the plugin settings. Hidden categories keep Discord's own "No Access" label.
 
 ## Install
 
